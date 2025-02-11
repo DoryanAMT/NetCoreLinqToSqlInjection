@@ -1,0 +1,63 @@
+﻿@model List<Doctor>
+
+@{
+    List<string> especialidades = ViewData["ESPECIALIDADES"] as List<string>;
+}
+<h1>LINQ DE DOCTORES</h1>
+<p>
+    <a asp-controller="Doctores"
+       asp-action="Create"
+       class="btn btn-outline-primary">
+        Create New Doctor
+    </a>
+</p>
+
+<form method="post">
+    <select name="especialidad" class="form form-control">
+        @foreach(string especialidad in especialidades){
+            <option value="@especialidad">@especialidad</option>
+        }
+    </select>
+    <button>Filtrar</button>
+</form>
+@if (Model != null)
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID DOCTOR</th>
+                <th>APELLIDO</th>
+                <th>ESPECIALIDAD</th>
+                <th>SALARIO</th>
+                <th>HOSPITAL</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Doctor doctor in Model)
+            {
+                <tr>
+                    <td>@doctor.IdDoctor</td>
+                    <td>@doctor.Apellido</td>
+                    <td>@doctor.Especialidad</td>
+                    <td>@doctor.Salario</td>
+                    <td>@doctor.IdHospital</td>
+                    <td>
+                        <a asp-controller="Doctores"
+                           asp-action="Delete"
+                           asp-route-idDoctor="@doctor.IdDoctor"
+                           class="btn btn-danger">
+                            Delete
+                        </a>
+                        <a asp-controller="Doctores"
+                           asp-action="Update"
+                           asp-route-idDoctor="@doctor.IdDoctor"
+                           class="btn btn-warning">
+                            Update
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
