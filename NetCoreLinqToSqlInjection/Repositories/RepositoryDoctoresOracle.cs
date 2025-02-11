@@ -3,6 +3,7 @@ using NetCoreLinqToSqlInjection.Models;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Data;
+using System.Numerics;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NetCoreLinqToSqlInjection.Repositories
@@ -14,6 +15,15 @@ namespace NetCoreLinqToSqlInjection.Repositories
     //begin
     //  delete from DOCTOR where DOCTOR_NO = p_iddoctor;
     //    commit;
+    //end;
+    //create or replace procedure sp_update_doctor
+    //(p_iddoctor DOCTOR.DOCTOR_NO%TYPE, p_idhospital DOCTOR.HOSPITAL_COD%TYPE,
+    //p_apellido DOCTOR.APELLIDO%TYPE, p_especialidad DOCTOR.ESPECIALIDAD%TYPE, p_salario DOCTOR.SALARIO%TYPE)
+    //as
+    //begin
+    //  update DOCTOR set HOSPITAL_COD=p_idhospital, APELLIDO=p_apellido, ESPECIALIDAD=p_especialidad, SALARIO=p_salario
+    //  where DOCTOR_NO=p_iddoctor;
+    //  commit;
     //end;
     #endregion
     public class RepositoryDoctoresOracle : IRepositoryDoctores
